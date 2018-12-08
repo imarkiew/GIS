@@ -31,7 +31,6 @@ int main(int argc, char** argv) {
     stringstream ss(argv[5]);
     bool is_flow_data_saved = false;
     ss >> boolalpha >> is_flow_data_saved;
-    cout <<is_flow_data_saved << endl;
 //    numer wierzchołka odpowiadający źródłu
     int s = atoi(argv[6]);
 //    numer wierzchołka odpowiadający ujściu
@@ -55,8 +54,27 @@ int main(int argc, char** argv) {
 //    int s = 0;
 //    int t = 6;
 
-//    inicjalizacja macierzy wag połączeń C przed wczytaniem z pliku
-    double C[n][n] = {0};
+    //    inicjalizacja zmiennych
+    double fmax = 0.0;
+    queue<int> Q;
+    double cp = 0;
+    int x, y = 0;
+    bool esc = false;
+    int y_tmp = 0;
+    auto C = new double * [n];
+    auto F = new double * [n];
+    auto P = new int [n];
+    auto CFP = new double [n];
+
+    for(int i = 0; i < n; i++){
+        C[i] = new double [n];
+        F[i] = new double [n];
+        CFP[i] = 0.0;
+        P[i] = 0;
+        for(int j = 0; j < n; j++){
+            C[i][j] = F[i][j] = 0.0;
+        }
+    }
 
 //    wczytywanie macierzy C z pliku
     ifstream input_file(network_path);
@@ -74,17 +92,6 @@ int main(int argc, char** argv) {
         input_file.close();
     }else cout << "Unable to open file";
 
-//    inicjalizacja zmiennych
-    double fmax = 0.0;
-    double F[n][n] = {0};
-    queue<int> Q;
-    int P[n] = {0};
-    double CPF[n] = {0.0};
-    double cp = 0;
-    int x, y = 0;
-    bool esc = false;
-    int y_tmp = 0;
-
 //  pomiar czasu 1)
     chrono::steady_clock::time_point begin = chrono::steady_clock::now();
 
@@ -92,7 +99,7 @@ int main(int argc, char** argv) {
     while(true){
         fill_n(P, n, -1);
         P[s] = -2;
-        CPF[s] = numeric_limits<double>::max();
+        CFP[s] = numeric_limits<double>::max();
         while(!Q.empty()) Q.pop();
         Q.push(s);
         esc = false;
@@ -103,14 +110,14 @@ int main(int argc, char** argv) {
                 cp = C[x][y] - F[x][y];
                 if(!is_close(cp, 0) && P[y] == -1){
                     P[y] = x;
-                    CPF[y] = min(CPF[x], cp);
+                    CFP[y] = min(CFP[x], cp);
                     if(y == t){
-                        fmax += CPF[t];
+                        fmax += CFP[t];
                         y_tmp = y;
                         while(y_tmp != s){
                             x = P[y_tmp];
-                            F[x][y_tmp] += CPF[t];
-                            F[y_tmp][x] -= CPF[t];
+                            F[x][y_tmp] += CFP[t];
+                            F[y_tmp][x] -= CFP[t];
                             y_tmp = x;
                         }
                         esc = true;
@@ -160,4 +167,15 @@ int main(int argc, char** argv) {
         }
         else cout << "Unable to open file";
     }
+
+//    dealokacja zmiennych dynamicznych
+      for(i = 0; i < n; i++){
+        delete [] C[i];
+        delete [] F[i];
+      }
+
+      delete [] C;
+      delete [] F;
+      delete [] P;
+      delete [] CFP;
 }
