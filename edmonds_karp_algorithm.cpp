@@ -106,7 +106,7 @@ int main(int argc, char** argv) {
         while(!Q.empty()){
             x = Q.front();
             Q.pop();
-            for(y; y < n; y++){
+            for(y = 0; y < n; y++){
                 cp = C[x][y] - F[x][y];
                 if(!is_close(cp, 0) && P[y] == -1){
                     P[y] = x;
