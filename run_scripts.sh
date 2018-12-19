@@ -13,7 +13,7 @@ do
         make clean_network_generation
 
         make edmonds_karp_algorithm
-        ./edmonds_karp_algorithm ${number_of_nodes} ./networks/network_${number_of_nodes} network_${number_of_nodes} ./results false 0 ${sink_id}
+        ./edmonds_karp_algorithm ${number_of_nodes} ./networks/network_${number_of_nodes} network_${number_of_nodes}_cpp ./results false 0 ${sink_id}
         make clean_edmonds_karp_algorithm
     done
 done

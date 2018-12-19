@@ -139,7 +139,7 @@ int main(int argc, char** argv) {
     auto ms = chrono::duration_cast<chrono::milliseconds>(duration).count();
     ofstream timer;
 //    zapis zmierzonego czasu do pliku
-    timer.open(output_directory + string("/") + output_name + string("_time"), ios_base::app);
+    timer.open(output_directory + string("/networks_cpp_time"), ios_base::app);
     if (timer.good()) {
         timer << n << " " << ms << endl;
         timer.close();
