@@ -16,6 +16,6 @@ do
         ./edmonds_karp_algorithm ${number_of_nodes} ./networks/network_${number_of_nodes} network_${number_of_nodes}_cpp ./results true 0 ${sink_id}
         make clean_edmonds_karp_algorithm
 
-	java -jar GIS_Edmonds_Karp_alg.jar ./edmonds_karp_algorithm ${number_of_nodes} ./networks/network_${number_of_nodes} network_${number_of_nodes} ./results false 0 ${sink_id}
+	java -jar GIS_Edmonds_Karp_alg.jar ./edmonds_karp_algorithm ${number_of_nodes} ./networks/network_${number_of_nodes} network_${number_of_nodes}_java ./results false 0 ${sink_id}
     done
 done

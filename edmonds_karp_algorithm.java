@@ -46,7 +46,7 @@ public class Main {
         String natwork_path = args[2];
 
         // nazwa wyjsciowa
-        String output_name = args[3] + "java";
+        String output_name = args[3];
 
         // scieżka do katalogu do zapisu wyników
         String output_directory = args[4];
