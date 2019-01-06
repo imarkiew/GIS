@@ -1,21 +1,25 @@
 #!/usr/bin/env bash
 
+make flow_network_generation
+make edmonds_karp_algorithm
+javac EdmondsKarpAlgorithm.java
+
 # liczba węzłów
-for i in {100..101}
+for i in 100 250 500 750 1000 1500
 do
 #    liczba powtórzen
     number_of_nodes=${i}
     sink_id=$((${number_of_nodes} - 1))
-    for j in {1..10}
+    for j in {1..1000}
     do
-        make flow_network_generation
+        echo "i = ${i} | j = ${j}"
+
         ./flow_network_generation ${number_of_nodes} ./networks
-        make clean_network_generation
+        ./edmonds_karp_algorithm ${number_of_nodes} ./networks/network_${number_of_nodes} network_${number_of_nodes}_cpp ./results false 0 ${sink_id}
 
-        make edmonds_karp_algorithm
-        ./edmonds_karp_algorithm ${number_of_nodes} ./networks/network_${number_of_nodes} network_${number_of_nodes}_cpp ./results true 0 ${sink_id}
-        make clean_edmonds_karp_algorithm
-
-	java -jar GIS_Edmonds_Karp_alg.jar ./edmonds_karp_algorithm ${number_of_nodes} ./networks/network_${number_of_nodes} network_${number_of_nodes}_java ./results false 0 ${sink_id}
+		java EdmondsKarpAlgorithm ./edmonds_karp_algorithm ${number_of_nodes} ./networks/network_${number_of_nodes} network_${number_of_nodes}_java ./results false 0 ${sink_id}
     done
 done
+
+make clean
+rm EdmondsKarpAlgorithm.class

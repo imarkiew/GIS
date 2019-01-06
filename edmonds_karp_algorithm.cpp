@@ -9,7 +9,6 @@
 #include <chrono>
 #include <sstream>
 
-
 using namespace std;
 
 // funkcja do sprawdzania czy dwie liczby zmiennoprzecinkowe są dostatecznie blisko siebie
@@ -36,7 +35,7 @@ int main(int argc, char** argv) {
 //    numer wierzchołka odpowiadający ujściu
     int t = atoi(argv[7]);
 
-//    pierwszy przykład testowy
+////    pierwszy przykład testowy
 //    int n = 7;
 //    string network_path = "./tests/test_network_1";
 //    string output_name = "test_network_1_cpp";
@@ -45,7 +44,7 @@ int main(int argc, char** argv) {
 //    int s = 2;
 //    int t = 4;
 
-//    drugi przykład testowy
+////    drugi przykład testowy
 //    int n = 7;
 //    string network_path = "./tests/test_network_2";
 //    string output_name = "test_network_2_cpp";
@@ -169,7 +168,7 @@ int main(int argc, char** argv) {
     }
 
 //    dealokacja zmiennych dynamicznych
-      for(i = 0; i < n; i++){
+      for(int i = 0; i < n; i++){
         delete [] C[i];
         delete [] F[i];
       }

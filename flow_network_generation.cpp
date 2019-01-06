@@ -33,7 +33,13 @@ int main(int argc, char** argv) {
     string output_directory = argv[2];
 
 //    inicjalizacja zmiennych
-    double C[n][n] = {0};
+    auto C = new double * [n];
+    for(int i = 0; i < n; i++){
+        C[i] = new double [n];
+        for(int j = 0; j < n; j++){
+            C[i][j] = 0.0;
+        }
+    }
     string line = "";
     srand(time(NULL));
     default_random_engine generator;
@@ -99,4 +105,11 @@ int main(int argc, char** argv) {
         network.close();
     }
     else cout << "Unable to open file";
+
+//    dealokacja zmiennych dynamicznych
+      for(int i = 0; i < n; i++){
+        delete [] C[i];
+      }
+
+      delete [] C;
 }

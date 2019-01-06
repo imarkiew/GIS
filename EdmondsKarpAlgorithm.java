@@ -6,7 +6,7 @@ import java.util.Scanner;
 
 import static java.lang.Math.min;
 
-public class Main {
+public class EdmondsKarpAlgorithm {
 
     public static boolean  is_close(double a, double b){
         double rel_tol = Math.pow(10,-9);
