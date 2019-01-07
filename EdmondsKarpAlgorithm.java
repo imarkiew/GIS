@@ -35,8 +35,7 @@ public class EdmondsKarpAlgorithm {
 
         return myArray;
     }
-
-
+    
     public static void main(String [ ] args) throws IOException {
         // liczba wierchołków
         Integer n = Integer.decode(args[1]);
