@@ -35,7 +35,7 @@ public class EdmondsKarpAlgorithm {
 
         return myArray;
     }
-    
+
     public static void main(String [ ] args) throws IOException {
         // liczba wierchołków
         Integer n = Integer.decode(args[1]);
@@ -54,7 +54,7 @@ public class EdmondsKarpAlgorithm {
         String ss = args[5];
 
         boolean is_flow_data_saved = true;
-        //is_flow_data_saved = Boolean.getBoolean(ss);
+        is_flow_data_saved = Boolean.getBoolean(ss);
 
         //    numer wierzchołka odpowiadający źródłu
         Integer s = Integer.decode(args[6]);
@@ -62,22 +62,22 @@ public class EdmondsKarpAlgorithm {
         Integer t = Integer.decode(args[7]);
 
         //    pierwszy przykład testowy
-        //    int n = 7;
-        //    string network_path = "./tests/test_network_1";
-        //    string output_name = "test_network_1_cpp";
-        //    string output_directory = "./tests";
-        //    bool is_flow_data_saved = true;
-        //    int s = 2;
-        //    int t = 4;
+        //    Integer n = 7;
+        //    String network_path = "./tests/test_network_1";
+        //    String output_name = "test_network_1_java";
+        //    String output_directory = "./tests";
+        //    boolen is_flow_data_saved = true;
+        //    Integer s = 2;
+        //    Integer t = 4;
 
         //    drugi przykład testowy
-        //    int n = 7;
-        //    string network_path = "./tests/test_network_2";
-        //    string output_name = "test_network_2_cpp";
-        //    string output_directory = "./tests";
-        //    bool is_flow_data_saved = true;
-        //    int s = 0;
-        //    int t = 6;
+        //    Integer n = 7;
+        //    String network_path = "./tests/test_network_2";
+        //    String output_name = "test_network_2_java";
+        //    String output_directory = "./tests";
+        //    boolen is_flow_data_saved = true;
+        //    Integer s = 0;
+        //    Integer t = 6;
 
         //inicjalizacja zmiennych
         double fmax = 0.0;
@@ -101,14 +101,15 @@ public class EdmondsKarpAlgorithm {
             }
         }
 
+        //    wczytywanie macierzy C z pliku
         try {
             C = readArray(natwork_path);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
+        //  pomiar czasu 1)
         long start = System.currentTimeMillis();
-
+        //    algorytm Edmondsa-Karpa (wyjaśniony w sprawozdaniu)
         while(true){
             Arrays.fill(P,-1);
 
@@ -145,18 +146,19 @@ public class EdmondsKarpAlgorithm {
             if(!esc) break;
         }
 
-
+        //    pomiar czasu 2)
         long stop = System.currentTimeMillis() ;
-
+        //    różnica czasów
         long duration = stop - start;
 
-
-        FileWriter fstream = new FileWriter(output_directory + "/" + "networks_java" + "_time.txt",true);
+        //    zapis zmierzonego czasu do pliku
+        FileWriter fstream = new FileWriter(output_directory + "/" + "networks_java" + "_time",true);
         BufferedWriter out = new BufferedWriter(fstream);
         out.append(n + " " + duration);
         out.newLine();
         out.close();
 
+        //    ewentualny zapis macierzy przepływów netto F i maksymalnego przepływu maxflow do plików
         if(is_flow_data_saved){
 
             try (PrintWriter out_flows = new PrintWriter(  output_directory + "/" + output_name + "_flows")) {
