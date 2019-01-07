@@ -49,8 +49,7 @@ with open('./stats/diffs', 'w') as file:
         nr_java_results = java_results[index]
         for j in range(len(nr_cpp_results[5])):
             file_writer.writerow([nr, str(int((j + 1)*bucket_size_step)) + '_' + str(int((j + 2)*bucket_size_step)),
-                                  nr_cpp_results[5][j],
-                                  nr_java_results[5][j]])
+                                  format(nr_cpp_results[5][j], '.2f'), format(nr_java_results[5][j], '.2f')])
 
 with open('./stats/statystyki', 'w') as file:
     file_writer = csv.writer(file, delimiter=' ')
@@ -60,9 +59,11 @@ with open('./stats/statystyki', 'w') as file:
         index = number_of_nodes.index(nr)
         nr_cpp_results = cpp_results[index]
         nr_java_results = java_results[index]
-        file_writer.writerow([nr, nr_cpp_results[0],  nr_java_results[0], nr_cpp_results[1], nr_java_results[1],
-                              nr_cpp_results[2], nr_java_results[2], nr_cpp_results[3], nr_java_results[3],
-                              nr_cpp_results[4], nr_java_results[4]])
+        file_writer.writerow([nr, format(nr_cpp_results[0], '.2f'),  format(nr_java_results[0], '.2f'),
+                              format(nr_cpp_results[1], '.2f'), format(nr_java_results[1], '.2f'),
+                              format(nr_cpp_results[2], '.2f'), format(nr_java_results[2], '.2f'),
+                              format(nr_cpp_results[3], '.2f'), format(nr_java_results[3], '.2f'),
+                              format(nr_cpp_results[4], '.2f'), format(nr_java_results[4], '.2f')])
 
 # index = number_of_nodes.index(750)
 # nr_cpp_results = cpp_results[index]
