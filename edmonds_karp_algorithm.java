@@ -65,7 +65,7 @@ public class Main {
         //    pierwszy przykład testowy
         //    Integer n = 7;
         //    String network_path = "./tests/test_network_1";
-        //    String output_name = "test_network_1_cpp";
+        //    String output_name = "test_network_1_java";
         //    String output_directory = "./tests";
         //    boolean is_flow_data_saved = true;
         //    Integer s = 2;
@@ -74,7 +74,7 @@ public class Main {
         //    drugi przykład testowy
         //    Integer n = 7;
         //    String network_path = "./tests/test_network_2";
-        //    String output_name = "test_network_2_cpp";
+        //    String output_name = "test_network_2_java";
         //    String output_directory = "./tests";
         //    boolean is_flow_data_saved = true;
         //    Integer s = 0;
